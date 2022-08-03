@@ -2,7 +2,7 @@ import Logo from "../assets/styles/Logo"
 import Form from "../assets/styles/Form"
 import Container from "../assets/styles/Container"
 import logo from "../assets/logo.png";
-import UserContext from "../contexts/UserContext";
+import TokenContext from "../contexts/TokenContext";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { postLogin } from "../services/tracklt";
@@ -10,11 +10,14 @@ import { ThreeDots } from "react-loader-spinner"
 
 
 export default function Login() {
-    const { user, setUser } = useContext(UserContext);
-    const [form, setForm] = useState({});
+    const { setToken } = useContext(TokenContext);
     const [required, setRequired] = useState(true);
     const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
+    const [form, setForm] = useState({
+        email: "",
+        password: ""
+    });
 
     function handleForm({ name, value }) {
         setForm({...form, [name]: value})
@@ -29,23 +32,24 @@ export default function Login() {
             email: form.email,
             password: form.password
         }
-        console.log(body);
+        
 
-        /* postLogin(body).then(answer => {
-            setUser(answer.data.token);
-            setForm({});
+        postLogin(body).then(answer => {
+            setToken(answer.data.token);
             
             navigate("/hoje");
-        });  */  
+        });
         
         postLogin(body).catch(answer => {  
             setRequired(true);
             setDisabled(false);
-            setForm({});
+            setForm({
+                email: "",
+                password: ""
+            });
 
-            answer.data.message === undefined ? 
-                alert("Ocorreu um erro inesperado. Preencha os campos novamente com informações válidas.") :
-                alert("answer.data.message");
+            alert("Falha no login! Preencha os campos novamente com informações válidas.")
+                
         }); 
     }
 

@@ -33,7 +33,6 @@ export default function SignUp() {
             image: form.image,
             password: form.password
         }
-        console.log(form);
 
         postSignUp(body).then(answer => {  
             navigate("/");
