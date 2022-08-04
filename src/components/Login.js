@@ -5,7 +5,7 @@ import logo from "../assets/logo.png";
 import UserContext from "../contexts/UserContext";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import { postLogin } from "../services/tracklt";
+import { postLogin } from "../services/trackIt";
 import { ThreeDots } from "react-loader-spinner"
 
 
@@ -60,7 +60,7 @@ export default function Login() {
         <Container>
             <Logo>
                 <img src={logo} alt="logo" />
-                <h1>Tracklt</h1>
+                <h1>TrackIt</h1>
             </Logo>    
 
             <Form onSubmit={handleLogin}>

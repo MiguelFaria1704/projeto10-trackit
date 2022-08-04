@@ -11,7 +11,7 @@ export default function Top() {
         <>
             {(path !== "/" && path !== "/cadastro") && (
                 <Bar>
-                    <h1>Tracklt</h1>
+                    <h1>TrackIt</h1>
                     <img src={user.image} alt="Profile" />
                 </Bar>
             )} 

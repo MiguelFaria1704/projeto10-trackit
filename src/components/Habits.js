@@ -2,10 +2,11 @@ import Page from "../assets/styles/Page";
 import styled from "styled-components";
 import HabitCreator from "./HabitCreator";
 import CheckBox from "../assets/styles/CheckBox";
+import Header from "../assets/styles/Header";
 import { useEffect, useState, useContext } from "react";
 import UserContext from "../contexts/UserContext";
-import { getHabits } from "../services/tracklt";
-import { deleteHabit } from "../services/tracklt";
+import { getHabits } from "../services/trackIt";
+import { deleteHabit } from "../services/trackIt";
 
 
 export default function Habits() {
@@ -13,40 +14,39 @@ export default function Habits() {
     const [create, setCreate] = useState(false);
     const [habitsList, setHabitsList] = useState([]);
 
-    function reloadHabits() {
+    function loadHabits() {
         getHabits(user.token).then((answer) => {
             setHabitsList(answer.data);
         });
     }
     
-    useEffect(reloadHabits, []);
+    useEffect(loadHabits, []);
 
     return (
         <Page>
-            <Header>
+            <Header location="/habitos">
                 <h1>Meus hábitos</h1>
                 <button onClick={() => setCreate(!create)}>+</button>
             </Header>
 
             {create === true &&(
-                <HabitCreator setCreate={setCreate} user={user} reloadHabits={reloadHabits} />
+                <HabitCreator setCreate={setCreate} user={user} loadHabits={loadHabits} />
             )}
 
-            {habitsList.length > 0 ? (
-                <HabitsList habitsList={habitsList} reloadHabits={reloadHabits}/>
-            ) : (
-                <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
-            )}
-
+            {habitsList.length > 0 && (
+                <HabitsList habitsList={habitsList} loadHabits={loadHabits}/>
+            )} 
+            
+            <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
         </Page>
     );
 }
 
-function HabitsList({ habitsList, reloadHabits }) {
+function HabitsList({ habitsList, loadHabits }) {
     return (
         <>
             {habitsList.map(habit => (
-                <Habit key={habit.id} habit={habit} reloadHabits={reloadHabits} />
+                <Habit key={habit.id} habit={habit} loadHabits={loadHabits} />
             ))}
         </>
     );
@@ -77,18 +77,16 @@ function Day({ days, day }) {
 
 function Habit({ 
     habit,
-    reloadHabits 
+    loadHabits 
 }) {
     const { user } = useContext(UserContext);
         
     function deleteThis() {
-        console.log(habit);
-        
         const confirmation = window.confirm("Tem certeza de que quer deletar este hábito? Esta ação não poderá ser desfeita.");
         
         if(confirmation) {
              deleteHabit(habit.id, user.token).then(() => {
-                reloadHabits();
+                loadHabits();
             });    
         }
     }
@@ -115,33 +113,9 @@ function Habit({
     );  
 }
 
-const Header = styled.div`
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    font-family: 'Lexend Deca', sans-serif;
-    align-items: center;
-    margin-bottom: 20px;
-
-    h1 {
-        font-size: 23px;
-        color: #126BA5;
-    }
-
-    button {
-        width: 40px;
-        height: 35px;
-        color: white;
-        background-color: #52B6FF;
-        border-radius: 4.63636px;
-        border: none;
-        font-size: 27px;
-    }
-`;
-
 const HabitStyle = styled.div`
     width: 100%;
-    height: 91px;
+    min-height: 91px;
     padding: 15px 13px;
     border-radius: 5px;
     background-color: white;

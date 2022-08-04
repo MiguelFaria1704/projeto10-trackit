@@ -3,7 +3,7 @@ import Form from "../assets/styles/Form"
 import Container from "../assets/styles/Container"
 import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
-import { postSignUp } from "../services/tracklt";
+import { postSignUp } from "../services/trackIt";
 import { ThreeDots } from "react-loader-spinner"
 import { useState } from "react";
 
@@ -58,7 +58,7 @@ export default function SignUp() {
         <Container>
             <Logo>
                 <img src={logo} alt="logo" />
-                <h1>Tracklt</h1>
+                <h1>TrackIt</h1>
             </Logo>    
 
             <Form onSubmit={handleSignUp}>

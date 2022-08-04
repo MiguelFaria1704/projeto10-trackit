@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Form from "../assets/styles/Form";
 import CheckBox from "../assets/styles/CheckBox";
 import { useState } from "react";
-import { postHabit } from "../services/tracklt";
+import { postHabit } from "../services/trackIt";
 import { ThreeDots } from "react-loader-spinner";
 
 export default function HabitCreator( { 
@@ -131,7 +131,6 @@ const NewHabit = styled.div`
     justify-content: space-between;
     padding: 18px;
     border-radius: 5px;
-    margin: 20px;
 
     form {
         margin: 0;
