@@ -2,7 +2,7 @@ import Logo from "../assets/styles/Logo"
 import Form from "../assets/styles/Form"
 import Container from "../assets/styles/Container"
 import logo from "../assets/logo.png";
-import TokenContext from "../contexts/TokenContext";
+import UserContext from "../contexts/UserContext";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { postLogin } from "../services/tracklt";
@@ -10,7 +10,7 @@ import { ThreeDots } from "react-loader-spinner"
 
 
 export default function Login() {
-    const { setToken } = useContext(TokenContext);
+    const { setUser } = useContext(UserContext);
     const [required, setRequired] = useState(true);
     const [disabled, setDisabled] = useState(false);
     const navigate = useNavigate();
@@ -35,7 +35,11 @@ export default function Login() {
         
 
         postLogin(body).then(answer => {
-            setToken(answer.data.token);
+            setUser({
+                name: answer.data.name,
+                image: answer.data.image,
+                token: answer.data.token
+            });
             
             navigate("/hoje");
         });
@@ -48,8 +52,7 @@ export default function Login() {
                 password: ""
             });
 
-            alert("Falha no login! Preencha os campos novamente com informações válidas.")
-                
+            alert("Falha no login! Preencha os campos novamente com informações válidas.");     
         }); 
     }
 

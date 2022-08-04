@@ -24,6 +24,7 @@ const Form = styled.form`
         margin-bottom: 6px;
         padding: 0 11px;
         outline: none;
+        background-color: ${props => props.disabled ? '#F2F2F2' : 'white'} !important;
     }
 
     input[type="submit"], div {
@@ -32,17 +33,6 @@ const Form = styled.form`
         color: #FFFFFF;
         font-size: 21px;
     }
-
-    &&input:disabled {
-        color: red;
-    }
-
-    input:-internal-autofill-selected {
-    appearance: menulist-button;
-    background-image: none !important;
-    background-color: red !important;
-    color: fieldtext !important;
-}
 
     input::placeholder
      {
