@@ -1,9 +1,17 @@
 import styled from "styled-components";
 import { useLocation, Link } from "react-router-dom";
-import {CircularProgressbar,buildStyles} from "react-circular-progressbar";
+import { CircularProgressbar,buildStyles } from "react-circular-progressbar";
+import UserContext from "../contexts/UserContext";
+import { useEffect, useContext, useState } from "react";
 
 export default function Menu() {
-    const path = useLocation().pathname;
+    const path = useLocation().pathname; 
+    const { user } = useContext(UserContext);
+    const [progress, setProgress] = useState(0);
+
+    useEffect(() => {
+        setProgress(user.progress);
+    }, user.progress);
 
     return (
         <>
@@ -11,7 +19,7 @@ export default function Menu() {
                 <Bar>
                     <Link to="/habitos" style={{ textDecoration: 'none' }}>Hábitos</Link>
 
-                   <Container><Progress /></Container>
+                   <Container><Progress progress={progress}/></Container>
 
                     <Link to="/" style={{ textDecoration: 'none' }}>Histórico</Link>
                     
@@ -20,11 +28,11 @@ export default function Menu() {
         </>
     );
 }
-function Progress() {
+function Progress({ progress }) {
     return (
         <>
             <CircularProgressbar
-                value={30}
+                value={progress}
                 background
                 backgroundPadding={6}
                 styles={buildStyles({

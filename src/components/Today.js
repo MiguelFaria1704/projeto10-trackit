@@ -9,7 +9,7 @@ import styled from "styled-components";
 
 export default function Today() {
     const [date, setDate] = useState("");
-    const { user } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const [habits, setHabits] = useState([]);
     const [done, setDone] = useState({
         all: 0,
@@ -28,10 +28,10 @@ export default function Today() {
         getTodaysHabits(user.token).then(answer => {
             setHabits(answer.data);
 
-            if(answer.data.length !== 0) {   
+            if(answer.data.length !== 0) { 
                 const all = answer.data.length;
                 const doneTasks = answer.data.filter(habit => habit.done === true).length;
-                
+
                 answer.data.forEach(habit => {
                     setDone({...done, 
                         all: all,
@@ -39,6 +39,8 @@ export default function Today() {
                         percentage: (doneTasks / all * 100)
                     });
                 });
+            
+                setUser({...user, progress: [(doneTasks / all * 100)]});
             } 
         });
 

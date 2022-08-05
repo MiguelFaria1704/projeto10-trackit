@@ -38,7 +38,8 @@ export default function Login() {
             setUser({
                 name: answer.data.name,
                 image: answer.data.image,
-                token: answer.data.token
+                token: answer.data.token,
+                progress: [0]
             });
             
             navigate("/hoje");
