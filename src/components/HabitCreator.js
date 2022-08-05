@@ -131,6 +131,7 @@ const NewHabit = styled.div`
     justify-content: space-between;
     padding: 18px;
     border-radius: 5px;
+    margin-bottom: 28px;
 
     form {
         margin: 0;

@@ -16,7 +16,6 @@ const Page = styled.div`
         font-size: 18px;
         line-height: 22px;
         color: #666666;
-        margin-top: 28px;
     }
 `;
 

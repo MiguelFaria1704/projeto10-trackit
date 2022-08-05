@@ -33,11 +33,13 @@ export default function Habits() {
                 <HabitCreator setCreate={setCreate} user={user} loadHabits={loadHabits} />
             )}
 
-            {habitsList.length > 0 && (
+            {habitsList.length > 0 ? (
                 <HabitsList habitsList={habitsList} loadHabits={loadHabits}/>
+            ) : (
+                <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
             )} 
             
-            <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+            
         </Page>
     );
 }

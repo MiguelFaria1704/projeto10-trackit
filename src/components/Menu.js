@@ -21,7 +21,7 @@ export default function Menu() {
 
                    <Container><Progress progress={progress}/></Container>
 
-                    <Link to="/" style={{ textDecoration: 'none' }}>Histórico</Link>
+                    <Link to="/historico" style={{ textDecoration: 'none' }}>Histórico</Link>
                     
                 </Bar>
             )} 

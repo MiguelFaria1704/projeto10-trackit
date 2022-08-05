@@ -5,6 +5,7 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import Today from "./Today";
 import Habits from "./Habits";
+import History from "./History";
 import UserContext from "../contexts/UserContext";
 import "../assets/styles/reset.css";
 import "../assets/styles/style.css";
@@ -22,8 +23,8 @@ export default function App() {
                     <Route path="/" element={<Login/>} />
                     <Route path="/cadastro" element={<SignUp/>} />
                     <Route path="/hoje" element={<Today/>} />
-                    {<Route path="/habitos" element={<Habits/>} />
-                    /* <Route path="/historico" element={<History/>} /> */}
+                    <Route path="/habitos" element={<Habits/>} />
+                    <Route path="/historico" element={<History/>} />
                 </Routes>
             </UserContext.Provider>    
         </BrowserRouter>

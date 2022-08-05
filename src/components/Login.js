@@ -71,6 +71,7 @@ export default function Login() {
                     name="email"
                     required={required}
                     disabled={disabled}
+                    value={form.email}
                     onChange={(e) => handleForm({
                         name: e.target.name,
                         value: e.target.value
@@ -83,6 +84,7 @@ export default function Login() {
                     name="password"
                     required={required}
                     disabled={disabled}
+                    value={form.password}
                     onChange={(e) => handleForm({
                         name: e.target.name,
                         value: e.target.value
