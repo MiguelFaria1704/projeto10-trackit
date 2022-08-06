@@ -16,7 +16,7 @@ export default function Today() {
         done: 0,
         percentage: 0
     });
-    
+
     function formatDate() {
         let date = dayjs().locale('pt-br').format('dddd, DD/MM');
         date = date[0].toUpperCase() + date.substring(1);
@@ -36,11 +36,11 @@ export default function Today() {
                     setDone({...done, 
                         all: all,
                         done: doneTasks,
-                        percentage: (doneTasks / all * 100)
+                        percentage: Math.round(doneTasks / all * 100)
                     });
                 });
             
-                setUser({...user, progress: [(doneTasks / all * 100)]});
+                setUser({...user, progress: [Math.round(doneTasks / all * 100)]});
             } 
         });
 

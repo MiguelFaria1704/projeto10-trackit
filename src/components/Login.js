@@ -4,7 +4,7 @@ import Container from "../assets/styles/Container"
 import logo from "../assets/logo.png";
 import UserContext from "../contexts/UserContext";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { postLogin } from "../services/trackIt";
 import { ThreeDots } from "react-loader-spinner"
 
@@ -18,6 +18,14 @@ export default function Login() {
         email: "",
         password: ""
     });
+
+    useEffect(() => {
+        const local = localStorage.getItem("trackit");
+        
+        if(local !== null) {    
+            navigate("/hoje");
+        } 
+    });  
 
     function handleForm({ name, value }) {
         setForm({...form, [name]: value})
@@ -41,6 +49,13 @@ export default function Login() {
                 token: answer.data.token,
                 progress: [0]
             });
+
+            localStorage.setItem("trackit", JSON.stringify({
+                name: answer.data.name,
+                image: answer.data.image,
+                token: answer.data.token,
+                progress: [0]
+            }));
             
             navigate("/hoje");
         });
