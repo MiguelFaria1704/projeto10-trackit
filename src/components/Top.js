@@ -21,6 +21,7 @@ export default function Top() {
 
 const Bar = styled.div`
     max-width: 800px;
+    width: auto;
     height: 70px;
     display: flex;
     align-items: center;
