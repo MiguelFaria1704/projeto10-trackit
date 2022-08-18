@@ -1,9 +1,3 @@
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .root {
     max-width: 800px;
     min-width: 300px;
