@@ -2,7 +2,7 @@
 
 A simple way to keep your habits on track so you don't forget them in your daily routine. List your habits and set the weekdays to be reminded of them. Now you can use TrackIt to check what you're up to date and what you are yet to do with only a few clicks.
 
-<img src="/src/assets/TrackIt-prevew.gif" />
+<img src="/src/assets/TrackIt-preview.gif" />
 
 You can try it out at https://track-it-delta.vercel.app/
 
