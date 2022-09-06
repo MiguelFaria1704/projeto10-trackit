@@ -51,6 +51,8 @@ function Progress({ progress }) {
 
 const Bar = styled.div`
     width: 100%;
+    max-width: 800px;
+    min-width: 350px;
     height: 70px;
     display: flex;
     align-items: center;
