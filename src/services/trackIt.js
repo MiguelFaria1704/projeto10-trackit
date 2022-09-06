@@ -66,8 +66,12 @@ function postUncheckHabit(habitId, token) {
     return promise;
 }
 
-function getHabitsHistory() {
-    const promise = axios.get(`${BASE_URL}/habits/history/daily`);
+function getHabitsHistory(token) {
+    const promise = axios.get(`${BASE_URL}/habits/history/daily`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+    });
     return promise;
 }
 
